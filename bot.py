@@ -3,6 +3,19 @@ from rubpy.types import Update
 import random
 import re
 from typing import List, Tuple
+def install_packages():
+    required_packages = {
+        'rubpy': 'rubpy',
+        'regex': 'regex'
+    }
+    
+    for package, import_name in required_packages.items():
+        try:
+            __import__(import_name)
+        except ImportError:
+            print(f"📦 در حال نصب کتابخانه {package}...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+            print(f"✅ {package} با موفقیت نصب شد!")
 
 class PhoneBookBot:
     def __init__(self):
